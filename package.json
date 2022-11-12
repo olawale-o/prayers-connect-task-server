@@ -19,6 +19,7 @@
     "http": "^0.0.1-security",
     "http-errors": "^2.0.0",
     "mongodb": "^4.11.0",
+    "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.6.0"
   },
   "devDependencies": {
