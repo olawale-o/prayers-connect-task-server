@@ -14,7 +14,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors(corsOption));
 
-
 app.use('/api/v1/task', require('../task/route'));
 
 module.exports = app;
