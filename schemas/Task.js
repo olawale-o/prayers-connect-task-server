@@ -4,12 +4,30 @@ module.exports = {
     properties: {
       title: {
         type: 'string',
-        description: 'The street address',
+        description: 'The task title',
       },
       description: {
         type: 'string',
-        description: 'The state',
+        description: 'The task description',
       },
+      status: {
+        type: 'object',
+        description: "The status of the task",
+        properties: {
+          todo: {
+            type: 'boolean',
+            description: 'The inital task status',
+          },
+          inProgress: {
+            type: 'boolean',
+            description: 'The progress status of task',
+          },
+          done: {
+            type: 'boolean',
+            description: 'The completed state of task',
+          },
+        }
+      }
     },
     example: {
       title: 'Task One',
