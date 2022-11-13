@@ -5,8 +5,17 @@ module.exports = function(client) {
   return {
     index: async (req, res, _next) => {
       try {
-        const filter = {}
-        const tasks = await Task.find(filter).toArray();
+        const filter = req.query;
+        const tasks = await Task.find(filter)
+                           .project({
+                            id: "$_id",
+                             title: 1,
+                             status: 1,
+                             description: 1,
+                             createdAt: 1,
+                             updatedAt: 1,
+                             _id: 0,
+                            }).toArray();
         return res.status(200).json({
            tasks
         })
@@ -20,11 +29,7 @@ module.exports = function(client) {
         const newTask = {
           title: title.toLowerCase(),
           description: description.toLowerCase(),
-          status: {
-            todo: true,
-            inProgress: false,
-            done: false,
-          },
+          status: 'todo',
           createdAt: new Date(),
           updatedAt: new Date(),
         };
