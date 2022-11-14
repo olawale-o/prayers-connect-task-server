@@ -29,7 +29,7 @@ module.exports = function(client) {
         const newTask = {
           title: title.toLowerCase(),
           description: description.toLowerCase(),
-          status: description.toLowerCase(),
+          status: status.toLowerCase(),
           createdAt: new Date(),
           updatedAt: new Date(),
         };
