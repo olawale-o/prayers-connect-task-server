@@ -36,8 +36,8 @@ module.exports = function(client) {
         const taskId = await Task.insertOne(newTask);
         return res.status(200).json({
           message: 'New todo successfully created',
-          todo: {
-            task_id: taskId.insertedId,
+          task: {
+            id: taskId.insertedId,
             ...newTask
           }
         });
@@ -55,7 +55,10 @@ module.exports = function(client) {
         );
         return res.status(200).json({
           message: 'Task updated successfully',
-          todo: taskToUpdate.value,
+          task: {
+            id,
+            ...taskToUpdate.value
+          }
         });
       } catch (e) {
         console.log(e);
