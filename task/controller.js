@@ -25,11 +25,11 @@ module.exports = function(client) {
     },
     create: async (req, res, _next) => {
       try {
-        const { task: { title, description } } =  req.body;
+        const { task: { title, description, status } } =  req.body;
         const newTask = {
           title: title.toLowerCase(),
           description: description.toLowerCase(),
-          status: 'todo',
+          status: description.toLowerCase(),
           createdAt: new Date(),
           updatedAt: new Date(),
         };
