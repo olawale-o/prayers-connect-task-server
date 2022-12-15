@@ -1,5 +1,7 @@
 FROM node
 
+LABEL MAINTAINER="omoogunolawale@gmail.com"
+
 WORKDIR /usr/dockerize/prayers-connect
 
 COPY package.json ./
