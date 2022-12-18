@@ -1,7 +1,7 @@
-const { LOCAL_MONGODB_SINGLESET } = require('../config');
+const config = require('.././config');
 const router = require('express').Router();
 
-const dbClient = require('../database')(LOCAL_MONGODB_SINGLESET);
+const dbClient = require('../database')(config.get('db.host'));
 const controller = require('./controller')(dbClient);
 
 /**

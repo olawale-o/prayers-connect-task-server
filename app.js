@@ -1,7 +1,6 @@
-const { PORT, LOCAL_MONGODB_SINGLESET } = require('./config');
+const config = require('././config');
 const http = require('http');
-
-const client = require('./database')(LOCAL_MONGODB_SINGLESET);
+const client = require('./database')(config.get('db.host'));
 const dbConnection = require('./database/connection');
 const app = require('./config/server');
 
@@ -10,8 +9,8 @@ const server = http.createServer(app);
 dbConnection(client)
   .then((result) => {
       console.log(result);
-      server.listen(parseInt(PORT, 10), () => {
-      console.log(`Server started on port ${PORT}`);
+      server.listen(parseInt(config.get('port'), 10), () => {
+      console.log(`Server started on port ${config.get('port')}`);
     })
   })
  .catch(console.log)

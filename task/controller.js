@@ -1,7 +1,8 @@
 const { ObjectID } = require('bson');
+const config = require('.././config');
 
 module.exports = function(client) {
-  const Task = client.db('taskdb').collection('tasks');
+  const Task = client.db('taskdb').collection(config.get('db.name'));
   return {
     index: async (req, res, _next) => {
       try {
