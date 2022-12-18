@@ -1,29 +1,19 @@
-const { ObjectID } = require('bson');
-const config = require('.././config');
 const AppError = require('../common/app-error');
 const httpStatus = require('../common/http-status');
+const taskService = require('./task-service');
 
-module.exports = function(client) {
-  const Task = client.db('taskdb').collection(config.get('db.name'));
+module.exports = function() {
   return {
     index: async (req, res, _next) => {
       try {
         const filter = req.query;
-        const tasks = await Task.find(filter)
-                           .project({
-                            id: "$_id",
-                             title: 1,
-                             status: 1,
-                             description: 1,
-                             createdAt: 1,
-                             updatedAt: 1,
-                             _id: 0,
-                            }).toArray();
-        return res.status(200).json({
-           tasks
-        })
+        const tasks = await taskService.getAllTasks(filter);
+        return res.status(200).json({tasks})
       } catch (error) {
-        console.log(err);
+        return new AppError(
+          httpStatus.INTERNAL_SERVER_ERROR.code,
+          e.message
+        );
       }
     },
     create: async (req, res, _next) => {
@@ -36,7 +26,7 @@ module.exports = function(client) {
           createdAt: new Date(),
           updatedAt: new Date(),
         };
-        const taskId = await Task.insertOne(newTask);
+        const taskId = await taskService.insertTask(newTask);
         return res.status(200).json({
           message: 'New todo successfully created',
           task: {
@@ -53,12 +43,8 @@ module.exports = function(client) {
     },
     update: async (req, res, _next) => {
       try {
-        const { task: { id, status } } = req.body;
-        const taskToUpdate = await Task.findOneAndUpdate(
-          { _id: ObjectID(id) },
-          { $set: { status } },
-          { returnDocument: 'after' },
-        );
+        const { task } = req.body;
+        const taskToUpdate = await taskService.updateTask(task);
         return res.status(200).json({
           message: 'Task updated successfully',
           task: {
