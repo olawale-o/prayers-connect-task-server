@@ -1,5 +1,7 @@
 const { ObjectID } = require('bson');
 const config = require('.././config');
+const AppError = require('../common/app-error');
+const httpStatus = require('../common/http-status');
 
 module.exports = function(client) {
   const Task = client.db('taskdb').collection(config.get('db.name'));
@@ -43,7 +45,10 @@ module.exports = function(client) {
           }
         });
       } catch (e) {
-        console.log(e);
+        return new AppError(
+          httpStatus.INTERNAL_SERVER_ERROR.code,
+          e.message
+        );
       }
     },
     update: async (req, res, _next) => {
