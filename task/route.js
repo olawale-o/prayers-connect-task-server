@@ -1,8 +1,7 @@
-const config = require('.././config');
 const router = require('express').Router();
-
-const dbClient = require('../database')(config.get('db.host'));
-const controller = require('./controller')(dbClient);
+const taskValidationSchema = require('./validation/task-schema');
+const validateTaskBody = require('./validation/validate-new-task');
+const controller = require('./controller')();
 
 /**
 * @swagger
@@ -46,7 +45,7 @@ router.get('/', controller.index);
 *           description: Internal server error
 */
 
-router.post('/', controller.create);
+router.post('/', validateTaskBody(taskValidationSchema), controller.create);
 /**
 * @swagger
 *   /task:
