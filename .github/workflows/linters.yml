@@ -1,7 +1,8 @@
 name: Linters
 run-name: ${{github.actor}}
 
-on: push
+on:
+  [push]
 
 jobs:
   eslint:
