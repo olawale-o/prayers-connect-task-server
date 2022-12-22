@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x, 16.x]
-        os: [ubuntun-latest]
+        os: [ubuntu-latest]
     runs-on: ${{matrix.os}}
     steps:
       - name: Git checkout
