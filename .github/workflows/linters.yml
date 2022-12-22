@@ -1,8 +1,8 @@
 name: Linters
-run-name: ${{github.actor}}
+run-name: ${{github.actor}} made ${{github.event_name}} to ${{github.repository}}
 
 on:
-  [push]
+  [push, pull_request]
 
 jobs:
   eslint:
