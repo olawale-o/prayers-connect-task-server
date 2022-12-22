@@ -22,6 +22,6 @@ jobs:
       - name: Setup Eslint
         run: |
           npm install --save-dev eslint@8.x eslint-config-airbnb-base@15.x
-          [ -f .eslintrc.json]
+          [ -f .eslintrc.json ]
       - name: ESlint Report
         run: npm run lint
