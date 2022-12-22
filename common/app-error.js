@@ -5,10 +5,9 @@ module.exports = class AppError extends Error {
     this.message = message;
     this.isOperational = isOperational;
     if (stack) {
-      this.stack = stack
+      this.stack = stack;
     } else {
       Error.captureStackTrace(this, this.constructor);
     }
   }
-}
-
+};

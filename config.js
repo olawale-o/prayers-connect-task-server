@@ -1,18 +1,18 @@
 const convict = require('convict');
 
-var config = convict({
+const config = convict({
   env: {
     doc: 'The application environment.',
     format: ['production', 'development', 'test'],
     default: 'development',
-    env: 'NODE_ENV'
+    env: 'NODE_ENV',
   },
   port: {
     doc: 'The port to bind.',
     format: 'port',
     default: 5000,
     env: 'PORT',
-    arg: 'port'
+    arg: 'port',
   },
   db: {
     host: {
@@ -23,14 +23,14 @@ var config = convict({
     name: {
       doc: 'Database name',
       format: String,
-      default: 'taskdb'
-    }
-  }
+      default: 'taskdb',
+    },
+  },
 });
 
 const env = config.get('env');
-config.loadFile('./.config/' + env + '.json');
+config.loadFile(`./.config/${env}.json`);
 
-config.validate({allowed: 'strict'});
+config.validate({ allowed: 'strict' });
 
 module.exports = config;

@@ -1,5 +1,5 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient } = require('mongodb');
 
-module.exports = function(uri) {
+module.exports = function (uri) {
   return new MongoClient(uri);
 };

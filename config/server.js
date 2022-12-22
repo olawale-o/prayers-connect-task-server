@@ -7,7 +7,7 @@ const handleError = require('../common/error-handler');
 
 const corsOption = {
   origin: 'http://localhost:3000',
-  credential: true
+  credential: true,
 };
 
 const app = express();
@@ -23,8 +23,8 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: true 
 
 app.use('/api/v1/task', require('../task/route'));
 
-app.use(async (err, req, res, next) => {
+app.use(async (err, _req, res) => {
   await handleError(err, res);
-})
+});
 
 module.exports = app;

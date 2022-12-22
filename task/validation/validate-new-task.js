@@ -8,7 +8,7 @@ const validateTaskBody = (schema) => (req, res, next) => {
   if (error) {
     const errorMessage = error.details
       .map((details) => details.message)
-      .join(', ')
+      .join(', ');
 
     return next(new AppError(
       httpStatus.BAD_REQUEST.code,
@@ -17,7 +17,7 @@ const validateTaskBody = (schema) => (req, res, next) => {
   }
 
   Object.assign(req, value);
-  return next()
-}
+  return next();
+};
 
 module.exports = validateTaskBody;
