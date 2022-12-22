@@ -2,23 +2,23 @@ const AppError = require('../common/app-error');
 const httpStatus = require('../common/http-status');
 const taskService = require('./task-service');
 
-module.exports = function() {
+module.exports = function () {
   return {
-    index: async (req, res, _next) => {
+    index: async (req, res) => {
       try {
         const filter = req.query;
         const tasks = await taskService.getAllTasks(filter);
-        return res.status(200).json({tasks})
+        return res.status(200).json({ tasks });
       } catch (error) {
         return new AppError(
           httpStatus.INTERNAL_SERVER_ERROR.code,
-          e.message
+          error.message,
         );
       }
     },
-    create: async (req, res, _next) => {
+    create: async (req, res) => {
       try {
-        const { task: { title, description, status } } =  req.body;
+        const { task: { title, description, status } } = req.body;
         const newTask = {
           title: title.toLowerCase(),
           description: description.toLowerCase(),
@@ -31,30 +31,33 @@ module.exports = function() {
           message: 'New todo successfully created',
           task: {
             id: taskId.insertedId,
-            ...newTask
-          }
+            ...newTask,
+          },
         });
       } catch (e) {
         return new AppError(
           httpStatus.INTERNAL_SERVER_ERROR.code,
-          e.message
+          e.message,
         );
       }
     },
-    update: async (req, res, _next) => {
+    update: async (req, res) => {
       try {
         const { task } = req.body;
         const taskToUpdate = await taskService.updateTask(task);
         return res.status(200).json({
           message: 'Task updated successfully',
           task: {
-            id,
-            ...taskToUpdate.value
-          }
+            id: task.id,
+            ...taskToUpdate.value,
+          },
         });
       } catch (e) {
-        console.log(e);
+        return new AppError(
+          httpStatus.INTERNAL_SERVER_ERROR.code,
+          e.message,
+        );
       }
     },
-  }
+  };
 };

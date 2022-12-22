@@ -1,6 +1,6 @@
 const {
   Task,
-  TaskResponse
+  TaskResponse,
 } = require('./schemas');
 
 module.exports = {
