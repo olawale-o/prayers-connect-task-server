@@ -1,6 +1,7 @@
 version: '3.9'
 services:
   web:
+    container_name: prayers-connect
     build: .
     ports:
       - "5000:5000"
@@ -8,5 +9,6 @@ services:
       - mongo
   mongo:
     image: mongo
+    container_name: prayers-connect-db
     ports:
-      - "27027:27027"
+      - "27027:27017"
