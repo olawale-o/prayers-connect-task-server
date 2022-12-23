@@ -4,7 +4,7 @@ const { ObjectID } = require('bson');
 const config = require('.././config');
 const dbClient = require('../database')(config.get('db.host'));
 
-const Task = dbClient.db('taskdb').collection(config.get('db.name'));
+const Task = dbClient.db(config.get('db.name')).collection('tasks');
 
 module.exports = {
   findTasks: async (query) => Task.find(query)
