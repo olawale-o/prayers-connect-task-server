@@ -19,10 +19,12 @@ module.exports = {
     }).toArray(),
   insertTask: async (data) => Task.insertOne(data),
   updateTask: async (data) => {
-    const { id, status } = data;
+    const {
+      id, status, title, description,
+    } = data;
     return Task.findOneAndUpdate(
       { _id: ObjectID(id) },
-      { $set: { status } },
+      { $set: { status, title, description } },
       { returnDocument: 'after' },
     );
   },
