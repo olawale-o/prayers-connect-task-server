@@ -24,7 +24,11 @@ module.exports = {
     } = data;
     return Task.findOneAndUpdate(
       { _id: ObjectID(id) },
-      { $set: { status, title, description } },
+      {
+        $set: {
+          status, title, description, updatedAt: new Date(),
+        },
+      },
       { returnDocument: 'after' },
     );
   },
