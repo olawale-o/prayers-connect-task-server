@@ -1,5 +1,6 @@
 const {
-  Task,
+  NewTaskRequest,
+  TaskUpdateRequest,
   TaskResponse,
 } = require('./schemas');
 
@@ -15,6 +16,10 @@ module.exports = {
     },
   },
   components: {
-    schemas: { Task, TaskResponse },
+    schemas: {
+      NewTaskRequest,
+      TaskUpdateRequest,
+      TaskResponse,
+    },
   },
 };

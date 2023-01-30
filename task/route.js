@@ -31,7 +31,7 @@ router.get('/', controller.index);
 *         content:
 *           application/json:
 *             schema:
-*               $ref: '#/components/schemas/Task'
+*               $ref: '#/components/schemas/NewTaskRequest'
 *       responses:
 *         200:
 *           description: Task created successfully
@@ -57,7 +57,7 @@ router.post('/', validateTaskBody(taskValidationSchema), controller.create);
 *         content:
 *           application/json:
 *             schema:
-*               $ref: '#/components/schemas/Task'
+*               $ref: '#/components/schemas/TaskUpdateRequest'
 *       responses:
 *         200:
 *           description: Task created successfully

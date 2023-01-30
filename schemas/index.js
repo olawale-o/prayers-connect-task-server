@@ -1,7 +1,11 @@
-const Task = require('./Task');
+const {
+  NewTaskRequest,
+  TaskUpdateRequest,
+} = require('./Task');
 const TaskResponse = require('./TaskResponse');
 
 module.exports = {
-  Task,
+  NewTaskRequest,
+  TaskUpdateRequest,
   TaskResponse,
 };
