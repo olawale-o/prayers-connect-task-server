@@ -59,5 +59,23 @@ module.exports = function () {
         );
       }
     },
+    show: async (req, res) => {
+      const { id } = req.params;
+      try {
+        const task = await taskService.findTask(id);
+        if (!task) {
+          return new AppError(
+            httpStatus.NOT_FOUND,
+            'Not found',
+          );
+        }
+        return res.status(200).json(task);
+      } catch (e) {
+        throw new AppError(
+          httpStatus.INTERNAL_SERVER_ERROR.code,
+          e.message,
+        );
+      }
+    },
   };
 };

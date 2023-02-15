@@ -32,4 +32,5 @@ module.exports = {
       { returnDocument: 'after' },
     );
   },
+  findOne: async (query) => Task.findOne({ _id: ObjectID(query) }),
 };

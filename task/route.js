@@ -70,4 +70,22 @@ router.post('/', validateTaskBody(taskValidationSchema), controller.create);
 */
 router.put('/', controller.update);
 
+/**
+* @swagger
+*   /task:
+*     get:
+*       summary: Get a tasks
+*       tags: [Task]
+*       responses:
+*         200:
+*           description: Get a task
+*           content:
+*             application/json:
+*               schema:
+*                 $ref: '#/components/schemas/TaskResponse'
+*         500:
+*           description: Internal server error
+*/
+router.get('/:id', controller.show);
+
 module.exports = router;
