@@ -1,0 +1,8 @@
+{
+  "env": "production",
+  "port": 5000,
+  "db": {
+    "host": "mongodb://prayers-connect-db:27017/taskdb?retryWrites=true&w=majority",
+    "name": "taskdb"
+  }
+}
