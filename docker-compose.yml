@@ -2,13 +2,21 @@ version: '3.9'
 services:
   web:
     container_name: prayers-connect
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "5000:5000"
     depends_on:
       - mongo
   mongo:
-    image: mongo
     container_name: prayers-connect-db
+    image: mongo
+    restart: always
+    volumes:
+      - db_data:/data/db
     ports:
       - "27027:27017"
+  
+volumes:
+  db_data:
