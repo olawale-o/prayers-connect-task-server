@@ -14,20 +14,33 @@
 - Type `git clone (copied link)` on the currently opened terminal or command prompt
 - Remember to change `(copied link)` to `git@github.com:olawale-o/prayers-connect-task-server.git` which is the name of the repository
 
-# Install
+# Running the app
+## Development
+### Install
 ```bash
 npm install
 ```
 
-# Usage
-```bash
-npm start
-```
-
+### Usage
 ```bash
 npm run dev
 ```
 
+## Production 
+### Start container
+```bash
+  docker compose up --build
+```
+### Stop container
+```bash
+  docker compose down
+```
+
+### Stop container and remove volume
+
+```bash
+  docker compose down --volumes
+```
 
 👤 **Omoogun Olawale**
 
